@@ -1,3 +1,20 @@
+document.getElementById("registerForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    fetch("https://spacetechbackend.onrender.com/register", {  // Use Render URL
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            name: document.getElementById("name").value,
+            department: document.getElementById("department").value,
+            year: document.getElementById("year").value,
+            section: document.getElementById("section").value,
+            password: document.getElementById("password").value
+        })
+    }).then(response => response.json())
+      .then(data => alert(data.message))
+      .catch(error => console.error(error));
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const heroSection = document.querySelector(".hero");
     heroSection.style.opacity = "0";
